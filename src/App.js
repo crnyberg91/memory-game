@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Nav from "./components/Nav";
+import Jumbotron from "./components/Jumbotron";
+import Container from "./components/Container";
+import chars from "./chars.json";
+import Card from "./components/Card";
 
 function App() {
+
+  state = {
+    chars
+  };
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <Container>
+      {this.state.chars.map( char => (
+          <Card
+            id={char.id}
+            key={char.id}
+            name={char.name}
+            image={char.image}
+          />
+      ))}
+      </Container>
+
     </div>
   );
 }
