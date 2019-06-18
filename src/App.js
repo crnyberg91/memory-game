@@ -1,19 +1,19 @@
 import React from 'react';
 import './App.css';
 import Nav from "./components/Nav";
-import Jumbotron from "./components/Jumbotron";
+// import Jumbotron from "./components/Jumbotron";
 import Container from "./components/Container";
 import chars from "./chars.json";
 import Card from "./components/Card";
 
-function App() {
+class App extends React.Component {
 
   state = {
     chars
   };
 
   
-
+render() {
   return (
     <div className="App">
       <Nav />
@@ -29,7 +29,8 @@ function App() {
       </Container>
 
     </div>
-  );
+  )
+}
 }
 
 export default App;
