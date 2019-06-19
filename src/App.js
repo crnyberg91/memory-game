@@ -18,6 +18,7 @@ class App extends React.Component {
   incorrect = () => {
     this.setState({
       score: 0,
+      clickedChars: []
     })
   }
 
@@ -35,7 +36,8 @@ class App extends React.Component {
   }
 
   newHighScoreChange = () => {
-    if (this.state.score > this.state.highScore) {
+    console.log('score:', this.state.score);
+    if (this.state.score >= this.state.highScore) {
       const newHighScore = this.state.score;
       this.setState({
         highScore: newHighScore
@@ -51,10 +53,9 @@ class App extends React.Component {
       this.setState({
         clickedChars: [...this.state.clickedChars, charId],
         score: this.state.score + 1
-      })
-      console.log("clicked" + charId, " score: " + this.state.score)
+      }, this.newHighScoreChange());
       this.reshuffle(this.state.chars);
-      this.newHighScoreChange();
+      console.log("clicked" + charId, " score: " + this.state.score)
     }
   }
   render() {
