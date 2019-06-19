@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Nav from "./components/Nav";
-// import Jumbotron from "./components/Jumbotron";
+import Jumbotron from "./components/Jumbotron";
 import Container from "./components/Container";
 import chars from "./chars.json";
 import Card from "./components/Card";
@@ -15,40 +15,70 @@ class App extends React.Component {
     highScore: 0
   };
 
-  handleClick = (event, charId) => {
-    event.preventDefault();
-    if(this.state.clickedChars.includes(charId)){
-      this.incorrect()
-    } else {
-      this.setState(
-        this.state.clickedChars.push(charId),
-    console.log(this.state.clickedChars)
+  incorrect = () => {
+    this.setState({
+      score: 0,
+    })
+  }
 
-      )
+  reshuffle = (array) => {
+    let m = array.length, t, i;
+
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+
+    return array;
+  }
+
+  newHighScoreChange = () => {
+    if (this.state.score > this.state.highScore) {
+      const newHighScore = this.state.score;
+      this.setState({
+        highScore: newHighScore
+      })
     }
   }
-render() {
-  return (
-    <div className="App">
-      <Nav>
-         {this.state.score}
-         {this.state.highScore}
-      </Nav>
-      <Container>
-      {this.state.chars.map( char => (
-          <Card
-            id={char.id}
-            key={char.id}
-            name={char.name}
-            image={char.image}
-            onClick={()=>{this.handleClick(char.id)}}
-          />
-      ))}
-      </Container>
+  handleClick = (charId) => {
+    // event.preventDefault();
+    console.log("clicked" + charId)
+    if (this.state.clickedChars.includes(charId)) {
+      this.incorrect()
+    } else {
+      this.setState({
+        clickedChars: [...this.state.clickedChars, charId],
+        score: this.state.score + 1
+      })
+      console.log("clicked" + charId, " score: " + this.state.score)
+      this.reshuffle(this.state.chars);
+      this.newHighScoreChange();
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <Nav score={this.state.score}
+          highScore={this.state.highScore} 
+        />
+        <Jumbotron />
+        <Container>
+          {this.state.chars.map(char => (
+            <Card
+              id={char.id}
+              key={char.id}
+              name={char.name}
+              image={char.image}
+              onClick={() => { this.handleClick(char.id) }}
+            />
+          ))}
+        </Container>
 
-    </div>
-  )
-}
+      </div>
+    )
+  }
 }
 
 export default App;
