@@ -3,6 +3,7 @@ import './App.css';
 import Nav from "./components/Nav";
 import Jumbotron from "./components/Jumbotron";
 import Container from "./components/Container";
+import Footer from "./components/Footer";
 import chars from "./chars.json";
 import Card from "./components/Card";
 
@@ -62,7 +63,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav score={this.state.score}
-          highScore={this.state.highScore} 
+          highScore={this.state.highScore}
         />
         <Jumbotron />
         <Container>
@@ -76,7 +77,7 @@ class App extends React.Component {
             />
           ))}
         </Container>
-
+        <Footer />
       </div>
     )
   }

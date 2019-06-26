@@ -4,8 +4,8 @@ function Jumbotron () {
     return (
         <div className="jumbotron jumbotron-fluid">
   <div className="container">
-    <h1 className="display-4">Fluid jumbotron</h1>
-    <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <h1 className="display-4">Remember the Characters!</h1>
+    <p className="lead">Click on the characters below only once, and be careful, they will shuffle every click.</p>
   </div>
 </div>
     )
