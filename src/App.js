@@ -53,7 +53,7 @@ class App extends React.Component {
       this.setState({
         clickedChars: [...this.state.clickedChars, charId],
         score: this.state.score + 1
-      }, this.newHighScoreChange());
+      }, this.newHighScoreChange);
       this.reshuffle(this.state.chars);
       console.log("clicked" + charId, " score: " + this.state.score)
     }
